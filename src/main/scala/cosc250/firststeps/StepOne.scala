@@ -22,7 +22,7 @@ object StepOne {
     *
     * You might need zipWithIndex here...
     */
-  def timesPosition(arr:Array[Int]):Array[Int] = ???
+  def timesPosition(arr:Array[Int]):Array[Int] = arr.zipWithIndex.map{case (a,b)=> a * b}
 
 
   /**
