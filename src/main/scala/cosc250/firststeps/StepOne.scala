@@ -29,7 +29,7 @@ object StepOne {
     * Ok, we did that for arrays. Now, what if we want to do it for lists?
     * Hint: if you're working imperatively and mutably, you can start with an Array and then go .toList on it at the end
     */
-  def doubleList(arr:List[Int]):List[Int] = ???
+  def doubleList(arr:List[Int]):List[Int] = arr.map(_ * 2)
 
 
   /**
@@ -37,7 +37,17 @@ object StepOne {
     * words have letters in commong. eg, for "frogs" and "eggs", we would return
     * List((3,1), (3,2), (4,3)
     */
-  def matchingLetters(wordA:String, wordB:String):List[(Int, Int)] = ???
+  def matchingLetters(wordA:String, wordB:String):List[(Int, Int)] = {
+    val seq = for {
+        (charA,indexA) <- wordA.zipWithIndex
+        (charB, indexB) <- wordB.zipWithIndex
+        if (charA == charB)
+      }
+        yield (indexA,indexB)
+
+    seq.toList
+  }
+}
 
   /**
     * Ok, the Roman Numerals one is harder to do this way, but I'll leave it here for anyone who's keen. You can skip
