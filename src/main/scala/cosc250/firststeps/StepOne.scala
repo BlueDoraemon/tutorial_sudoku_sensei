@@ -14,7 +14,7 @@ object StepOne {
     *
     * Start off by doing this iteratively. And then we'll discover how much shorter it is functionally.
     */
-  def doubleArray(arr:Array[Int]):Array[Int] = ???
+  def doubleArray(arr:Array[Int]):Array[Int] = arr.map(_*2)
 
   /**
     * Multiply every element in an array by its position in the array
