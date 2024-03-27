@@ -47,7 +47,7 @@ object StepOne {
 
     seq.toList
   }
-}
+
 
   /**
     * Ok, the Roman Numerals one is harder to do this way, but I'll leave it here for anyone who's keen. You can skip

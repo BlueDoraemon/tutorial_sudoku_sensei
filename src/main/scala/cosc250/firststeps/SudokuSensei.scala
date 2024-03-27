@@ -77,14 +77,18 @@ object SudokuSensei {
     * Don't forget, Position is just an alias for a tuple (Int, Int)
     */
   def row(pos:Position):Seq[Position] = {
-    ???
+    val range = 0 until 9
+    val y = pos._2
+    for {x <- range} yield (x, y)
   }
 
   /**
     * Now let's make a function that will return all the Positions in the same column
     */
   def column(pos:Position):Seq[Position] = {
-    ???
+    val range = 0 until 9
+    val x = pos._1
+    for{y <- range} yield (x,y)
   }
 
   /**
@@ -95,14 +99,21 @@ object SudokuSensei {
     * So let's define that as a function. (No higher order functions required here)
     */
   def whichThree(n:Int):Seq[Int] = {
-    ???
+    n match {
+      case n if n < 3 => Seq(0,1,2)
+      case n if  n >= 3 && n < 6 => Seq(3,4,5)
+      case n if  n >= 6 && n < 9  => Seq(6,7,8)
+      case _ => Seq()
+    }
   }
 
   /**
     * And then let's use that function to return all the positions in the same quadrant.
     */
   def quadrant(pos:Position):Seq[Position] = {
-    ???
+    for {
+
+    }
   }
 
   /**
