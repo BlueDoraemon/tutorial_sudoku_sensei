@@ -159,7 +159,15 @@ object SudokuSensei {
     * positionFunctions.exists(...
     */
   def possibilitiesFor(pos:Position, grid:Grid):Seq[Int] = {
-    ???
+    val possibleNumbers = 1 to 9
+    for {
+      eachFunction <- positionFunctions
+      number <- possibleNumbers
+      //eachFunction(pos) returns a Seq of Positions
+      if !eachFunction(pos).exists(checkPosition => grid(checkPosition) == number)
+    } yield number
+
+    // possibleNumbers.filterNot(eachFunction.exists(eachPosition(pos).exists(eachPosition => grid(eachPosition) == number)))
   }
 
   /**
