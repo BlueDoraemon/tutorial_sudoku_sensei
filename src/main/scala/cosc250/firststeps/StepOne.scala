@@ -53,9 +53,31 @@ object StepOne {
     * Ok, the Roman Numerals one is harder to do this way, but I'll leave it here for anyone who's keen. You can skip
     * it and head on to the Sudoku exercise if you'd prefer.
     */
-  def roman(i:Int):String = ???
+  def roman(i:Int):String = {
+    val numerals = List(
+      1000 -> "M",
+      900 -> "CM",
+      500 -> "D",
+      400 -> "CD",
+      100 -> "C",
+      90 -> "XC",
+      50 -> "L",
+      40 -> "XL",
+      10 -> "X",
+      9 -> "IX",
+      5 -> "V",
+      4 -> "IV",
+      1 -> "I"
+    )
 
+    def buildRoman(n: Int, numerals: List[(Int, String)]): String = numerals match {
+      case (value, symbol) :: tail if n >= value => symbol + buildRoman(n - value, numerals)
+      case _ :: tail => buildRoman(n, tail)
+      case Nil => ""
+    }
 
+    buildRoman(i, numerals)
+  }
   /*
    * Ok, now that's done, time to write a little Sudoku solver, and meet another higher order function: filter
    */

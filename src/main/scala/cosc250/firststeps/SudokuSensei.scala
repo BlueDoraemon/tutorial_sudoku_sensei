@@ -160,14 +160,18 @@ object SudokuSensei {
     */
   def possibilitiesFor(pos:Position, grid:Grid):Seq[Int] = {
     val possibleNumbers = 1 to 9
-    for {
-      eachFunction <- positionFunctions
-      number <- possibleNumbers
-      //eachFunction(pos) returns a Seq of Positions
-      if !eachFunction(pos).exists(checkPosition => grid(checkPosition) == number)
-    } yield number
+//    for {
+//      eachFunction <- positionFunctions
+//      number <- possibleNumbers
+//      checkPosition <- eachFunction(pos)
+//      //eachFunction(pos) returns a Seq of Positions
+//      if grid.contains(checkPosition) && !eachFunction(pos).exists(checkPosition => grid(checkPosition) == number)
+//    } yield number
 
-    // possibleNumbers.filterNot(eachFunction.exists(eachPosition(pos).exists(eachPosition => grid(eachPosition) == number)))
+     possibleNumbers.filterNot(
+       number => positionFunctions.exists(
+        eachFunction => eachFunction(pos).exists(
+         eachPosition => grid.contains(eachPosition) && grid(eachPosition) == number)))
   }
 
   /**
@@ -176,7 +180,12 @@ object SudokuSensei {
     * what number goes there.
     */
   def nextMoves(grid:Grid):Seq[(Position, Int)] = {
-    ???
+    for {
+      x <- 0 to 8
+      y <- 0 to 8
+      possibilities = possibilitiesFor((x,y), grid)
+      if possibilities.length == 1
+    } yield ((x,y), possibilities.head)
   }
 
 }
