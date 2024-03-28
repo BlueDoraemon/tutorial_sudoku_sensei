@@ -111,9 +111,14 @@ object SudokuSensei {
     * And then let's use that function to return all the positions in the same quadrant.
     */
   def quadrant(pos:Position):Seq[Position] = {
-    for {
+    val quadrantX = whichThree(pos._1)
+    val quadrantY = whichThree(pos._2)
 
-    }
+    for {
+      everyXValue <- quadrantX
+      everyYValue <- quadrantY
+    } yield
+      (everyXValue,everyYValue)
   }
 
   /**
@@ -138,7 +143,7 @@ object SudokuSensei {
     * And you might want to use the exists method -- a higher order function on sequences.
     */
   def numberPresentIn(grid:Grid, n:Int, positions:Seq[Position]):Boolean = {
-    ???
+    positions.exists(position=>grid(position) == n)
   }
 
   /**
